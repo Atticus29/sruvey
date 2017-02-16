@@ -1,0 +1,115 @@
+diff --git a/css/styles.css b/css/styles.css
+index e69de29..86240cd 100644
+--- a/css/styles.css
++++ b/css/styles.css
+@@ -0,0 +1,3 @@
++.confirmation{
++  display: none;
++}
+diff --git a/index.html b/index.html
+index 162e470..293eb79 100644
+--- a/index.html
++++ b/index.html
+@@ -1,13 +1,65 @@
+ <!DOCTYPE html>
+ <html>
+-<head>
+-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+-  <link href="css/styles.css" rel="stylesheet" type="text/css">
+-  <script src="js/jquery-3.1.1.js"></script>
+-  <script src="js/scripts.js"></script>
+-  <title></title>
+-</head>
+-<body>
+-
+-</body>
++  <head>
++    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
++    <link href="css/styles.css" rel="stylesheet" type="text/css">
++    <script src="js/jquery-3.1.1.js"></script>
++    <script src="js/scripts.js"></script>
++    <title></title>
++  </head>
++  <body>
++    <div class="container">
++      <form id="questions">
++        <div class="form-group">
++          <label for="name">Please type your name:</label>
++          <input id="name" class="form-control" type="text">
++        </div>
++        <div class="form-group">
++          <label for="birthday">Date of birth:</label>
++          <input id="birthday" class="form-control" type="date">
++        </div>
++        <p>
++          <strong>What's your favorite dinosaur?</strong>
++        </p>
++        <div class="radio">
++          <label>
++            <input type="radio" name="dinosaur" value="trex">
++            T-rex
++          </label>
++        </div>
++        <div class="radio">
++          <label>
++            <input type="radio" name="dinosaur" value="apatosaurus">
++            Apatosaurus
++          </label>
++        </div>
++        <div class="radio">
++          <label>
++            <input type="radio" name="dinosaur" value="stegosaurus">
++            Stegosaurus
++          </label>
++        </div>
++        <div class="form-group">
++          <label for="color">What's your favorite color?</label>
++          <input id="color" type="color" class="form-control">
++        </div>
++        <p><strong>Which would you rather be attacked by?</strong></p>
++        <select class="form-control" id="attack">
++          <option value="horses">100 duck-sized horses</option>
++          <option value="duck">1 horse-sized duck</option>
++        </select>
++        <button type="submit" class="btn">GO!</button>
++      </form>
++      <div class="confirmation">
++        <p id="final-text">
++          Cool! Thanks for submitting! Just so we get this right, you said:<br>
++          Your name was: <span class="name"></span><br>
++          Your birthday was: <span class="birthday"></span><br>
++          Your favorite dinosaur was: <span class="dino"></span><br>
++          Your favorite color was: <span class="color"></span><br>
++          You would rather be attacked by: <span class="attack"></span>
++        </p>
++      </div>
++    </div>
++  </body>
+ </html>
+diff --git a/js/scripts.js b/js/scripts.js
+index e69de29..39b26e2 100644
+--- a/js/scripts.js
++++ b/js/scripts.js
+@@ -0,0 +1,22 @@
++$(document).ready(function(){
++  $("#questions").submit(function(){
++    debugger;
++    var name = $("#name").val();
++    var dino = $("input:radio[name=dinosaur]:checked").val();
++    var favColor = $("#color").val();
++    var date = $("#birthday").val();
++    var attackChoice = $("#attack").val();
++
++    $(".name").text(name);
++    $(".dino").text(dino);
++    $(".color").text(favColor);
++    $(".color").css("color", favColor);
++    $(".birthday").text(date);
++    $(".attack").text(attackChoice);
++
++    $("form").toggle();
++    $(".confirmation").toggle();
++    event.preventDefault();
++  });
++
++});
